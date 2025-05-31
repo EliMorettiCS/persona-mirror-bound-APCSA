@@ -23,7 +23,7 @@ func nextday():
 			month += 1
 		else:
 			day += 1
-	elif month == month == 3 or month == 5 or month == 10 or month == 12:
+	elif month == 3 or month == 5 or month == 10 or month == 12:
 		if day >= 30:
 			day = 1
 			month += 1
@@ -39,7 +39,3 @@ func nextday():
 		month = 0
 		year += 1
 		
-func _run():
-	for i in range(100):
-		printdate()
-		nextday()

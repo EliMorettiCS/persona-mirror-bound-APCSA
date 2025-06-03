@@ -31,6 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 3.24, 0, 0, 0, 1, 0, 2, -1)
 texture = ExtResource("1_qtv3y")
 
 [node name="Floor" type="Node3D" parent="."]
+transform = Transform3D(4.16, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 

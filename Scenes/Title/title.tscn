@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://brxht6ve5feff"]
+[gd_scene load_steps=10 format=3 uid="uid://brxht6ve5feff"]
 
 [ext_resource type="FontFile" uid="uid://bqixcxdonewgu" path="res://Assets/Fonts/DroplineRegular-Wpegz.otf" id="1_c7cvr"]
 [ext_resource type="StyleBox" uid="uid://cyi564c23y5ql" path="res://Assets/Stylebox/title.tres" id="2_0rqj8"]
@@ -12,6 +12,8 @@ colors = PackedColorArray(0, 0, 0, 1, 0.268991, 0.0587128, 0.482159, 1)
 gradient = SubResource("Gradient_fp2oq")
 use_hdr = true
 fill_from = Vector2(0.538847, 0.537594)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_po5g7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fp2oq"]
 content_margin_left = 4.0
@@ -66,6 +68,10 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 8.0
+offset_right = 12.0
+offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -74,49 +80,7 @@ position = Vector2(547, 330)
 scale = Vector2(19.6047, 11.0873)
 texture = SubResource("GradientTexture2D_q2qps")
 
-[node name="BoxContainer" type="BoxContainer" parent="."]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 66.0416
-offset_top = -32.0
-offset_right = 466.042
-offset_bottom = 68.0
-grow_vertical = 2
-rotation = 0.222241
-
-[node name="Button" type="Button" parent="BoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_kyk5u")
-text = "3D Freeroam"
-alignment = 0
-script = ExtResource("4_iv8b7")
-
-[node name="BoxContainer3" type="BoxContainer" parent="."]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 66.0416
-offset_top = 98.0
-offset_right = 466.042
-offset_bottom = 198.0
-grow_vertical = 2
-rotation = 0.222241
-
-[node name="Button" type="Button" parent="BoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme = SubResource("Theme_kyk5u")
-text = "Confidant"
-alignment = 0
-script = ExtResource("4_iv8b7")
-
-[node name="BoxContainer2" type="BoxContainer" parent="."]
+[node name="BattleButton" type="BoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 4
@@ -129,11 +93,59 @@ offset_bottom = -62.0
 grow_vertical = 2
 rotation = 0.222241
 
-[node name="Button" type="Button" parent="BoxContainer2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleButton"]
+root_node = NodePath("../Button")
+libraries = {
+&"": SubResource("AnimationLibrary_po5g7")
+}
+
+[node name="Button" type="Button" parent="BattleButton"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_kyk5u")
 text = "Battle System"
+alignment = 0
+script = ExtResource("4_iv8b7")
+
+[node name="FreeroamButton" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0416
+offset_top = -32.0
+offset_right = 466.042
+offset_bottom = 68.0
+grow_vertical = 2
+rotation = 0.222241
+
+[node name="Button" type="Button" parent="FreeroamButton"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_kyk5u")
+text = "3D Freeroam"
+alignment = 0
+script = ExtResource("4_iv8b7")
+
+[node name="ConfidantButton" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0416
+offset_top = 98.0
+offset_right = 466.042
+offset_bottom = 198.0
+grow_vertical = 2
+rotation = 0.222241
+
+[node name="Button" type="Button" parent="ConfidantButton"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_kyk5u")
+text = "Confidant"
 alignment = 0
 script = ExtResource("4_iv8b7")
 

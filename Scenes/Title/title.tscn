@@ -1,0 +1,148 @@
+[gd_scene load_steps=9 format=3 uid="uid://brxht6ve5feff"]
+
+[ext_resource type="FontFile" uid="uid://bqixcxdonewgu" path="res://Assets/Fonts/DroplineRegular-Wpegz.otf" id="1_c7cvr"]
+[ext_resource type="StyleBox" uid="uid://cyi564c23y5ql" path="res://Assets/Stylebox/title.tres" id="2_0rqj8"]
+[ext_resource type="FontFile" uid="uid://c8k3adfp1q36u" path="res://Assets/Fonts/UrusanDesa-pg5pZ.otf" id="3_po5g7"]
+[ext_resource type="Script" uid="uid://cvo6foe87p716" path="res://Scenes/Title/button.gd" id="4_iv8b7"]
+
+[sub_resource type="Gradient" id="Gradient_fp2oq"]
+colors = PackedColorArray(0, 0, 0, 1, 0.268991, 0.0587128, 0.482159, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q2qps"]
+gradient = SubResource("Gradient_fp2oq")
+use_hdr = true
+fill_from = Vector2(0.538847, 0.537594)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fp2oq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.988235, 1, 1)
+draw_center = false
+border_width_left = 20
+border_width_top = 6
+border_width_right = 20
+border_width_bottom = 6
+corner_radius_top_left = 5
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 5
+corner_detail = 10
+expand_margin_left = 20.0
+expand_margin_right = 50.0
+shadow_color = Color(1, 1, 1, 1)
+anti_aliasing_size = 0.3
+
+[sub_resource type="Theme" id="Theme_kyk5u"]
+default_font = ExtResource("3_po5g7")
+default_font_size = 50
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 75
+Button/fonts/font = ExtResource("1_c7cvr")
+Button/styles/focus = ExtResource("2_0rqj8")
+Button/styles/hover = SubResource("StyleBoxFlat_fp2oq")
+Button/styles/normal = ExtResource("2_0rqj8")
+Button/styles/pressed = ExtResource("2_0rqj8")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(547, 330)
+scale = Vector2(19.6047, 11.0873)
+texture = SubResource("GradientTexture2D_q2qps")
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0416
+offset_top = -32.0
+offset_right = 466.042
+offset_bottom = 68.0
+grow_vertical = 2
+rotation = 0.222241
+
+[node name="Button" type="Button" parent="BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_kyk5u")
+text = "3D Freeroam"
+alignment = 0
+script = ExtResource("4_iv8b7")
+
+[node name="BoxContainer3" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0416
+offset_top = 98.0
+offset_right = 466.042
+offset_bottom = 198.0
+grow_vertical = 2
+rotation = 0.222241
+
+[node name="Button" type="Button" parent="BoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_kyk5u")
+text = "Confidant"
+alignment = 0
+script = ExtResource("4_iv8b7")
+
+[node name="BoxContainer2" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 66.0416
+offset_top = -162.0
+offset_right = 494.042
+offset_bottom = -62.0
+grow_vertical = 2
+rotation = 0.222241
+
+[node name="Button" type="Button" parent="BoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_kyk5u")
+text = "Battle System"
+alignment = 0
+script = ExtResource("4_iv8b7")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 9.0
+offset_top = 3.0
+offset_right = 548.0
+offset_bottom = 43.0
+theme_override_font_sizes/normal_font_size = 30
+text = "Persona Mirror Bound: Test Demo"
+scroll_active = false

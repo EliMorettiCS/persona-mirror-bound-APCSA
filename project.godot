@@ -14,3 +14,7 @@ config/name="Persona Mirror Bound"
 run/main_scene="uid://brxht6ve5feff"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"

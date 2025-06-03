@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://dhl2ferh0xuqb"]
+
+[ext_resource type="Script" uid="uid://bglgpisxf120w" path="res://Scenes/Main/character_body_3d.gd" id="1_cmk6n"]
+[ext_resource type="Texture2D" uid="uid://f812tkhwqste" path="res://Assets/makoto.jpeg" id="1_qtv3y"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qtv3y"]
+radius = 0.6
+height = 4.0
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i3fi7"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_o8wgc"]
+size = Vector2(20, 20)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 2, 0)
+script = ExtResource("1_cmk6n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 3.33333, 0, 0, 0, 1, 0, 2, -1)
+shape = SubResource("CapsuleShape3D_qtv3y")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 3.3325, 0.0744762, 0, -0.0223428, 0.99975, 0, 5.33333, 8)
+fov = 41.6
+
+[node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 3.24, 0, 0, 0, 1, 0, 2, -1)
+texture = ExtResource("1_qtv3y")
+
+[node name="Floor" type="Node3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_i3fi7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+mesh = SubResource("PlaneMesh_o8wgc")

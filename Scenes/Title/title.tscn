@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://brxht6ve5feff"]
+[gd_scene load_steps=15 format=3 uid="uid://brxht6ve5feff"]
 
 [ext_resource type="FontFile" uid="uid://bqixcxdonewgu" path="res://Assets/Fonts/DroplineRegular-Wpegz.otf" id="1_c7cvr"]
 [ext_resource type="StyleBox" uid="uid://cyi564c23y5ql" path="res://Assets/Stylebox/title.tres" id="2_0rqj8"]
@@ -10,10 +10,133 @@ colors = PackedColorArray(0, 0, 0, 1, 0.268991, 0.0587128, 0.482159, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_q2qps"]
 gradient = SubResource("Gradient_fp2oq")
+width = 200
+height = 200
 use_hdr = true
 fill_from = Vector2(0.538847, 0.537594)
 
+[sub_resource type="Animation" id="Animation_iv8b7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(966, -145)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_po5g7"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(966, -145), Vector2(190, 550), Vector2(966, -145)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6nbu7"]
+_data = {
+&"RESET": SubResource("Animation_iv8b7"),
+&"new_animation": SubResource("Animation_po5g7")
+}
+
+[sub_resource type="Animation" id="Animation_0rqj8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(66.0416, 162)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.222241]
+}
+
+[sub_resource type="Animation" id="Animation_c7cvr"]
+resource_name = "new_animation"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(66.0416, 162), Vector2(127, 178)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.222241, 0.222241]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_po5g7"]
+_data = {
+&"RESET": SubResource("Animation_0rqj8"),
+&"new_animation": SubResource("Animation_c7cvr")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fp2oq"]
 content_margin_left = 4.0
@@ -76,9 +199,16 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(547, 330)
-scale = Vector2(19.6047, 11.0873)
+position = Vector2(966, -145)
+scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_q2qps")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_6nbu7")
+}
+autoplay = "new_animation"
+speed_scale = 0.1
 
 [node name="BattleButton" type="BoxContainer" parent="."]
 custom_minimum_size = Vector2(200, 100)

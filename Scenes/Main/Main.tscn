@@ -1,14 +1,47 @@
-[gd_scene load_steps=8 format=3 uid="uid://dhl2ferh0xuqb"]
+[gd_scene load_steps=13 format=3 uid="uid://dhl2ferh0xuqb"]
 
-[ext_resource type="Script" uid="uid://bglgpisxf120w" path="res://Scenes/Main/character_body_3d.gd" id="1_cmk6n"]
-[ext_resource type="Texture2D" uid="uid://f812tkhwqste" path="res://Assets/makoto.jpeg" id="1_qtv3y"]
+[ext_resource type="Texture2D" uid="uid://cnq7cnjyyigeh" path="res://Assets/icon.svg" id="2_i3fi7"]
 [ext_resource type="Texture2D" uid="uid://dc0a25kjwmwtv" path="res://Assets/Materials/repeatingbrick.png" id="3_cmk6n"]
+[ext_resource type="Texture2D" uid="uid://cpbetx87nb3xc" path="res://Assets/Materials/repeatingplank.png" id="4_i3fi7"]
+[ext_resource type="Texture2D" uid="uid://nd48lscnkfpj" path="res://Assets/placeholderhouse.png" id="4_o8wgc"]
+
+[sub_resource type="GDScript" id="GDScript_cmk6n"]
+script/source = "extends CharacterBody3D
+
+
+const SPEED = 5.0
+const JUMP_VELOCITY = 4.5
+
+
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+
+	# Handle jump.
+	if Input.is_action_just_pressed(\"ui_accept\") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+
+	# Get the input direction and handle the movement/deceleration.
+	# As good practice, you should replace UI actions with custom gameplay actions.
+	var input_dir := Input.get_vector(\"ui_left\", \"ui_right\", \"ui_up\", \"ui_down\")
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * SPEED
+		velocity.z = direction.z * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.z = move_toward(velocity.z, 0, SPEED)
+
+	move_and_slide()
+"
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qtv3y"]
-radius = 0.6
+radius = 1.0
 height = 4.0
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_i3fi7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_o8wgc"]
+size = Vector3(22.0862, 1, 1.84143)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3fi7"]
 albedo_texture = ExtResource("3_cmk6n")
@@ -21,23 +54,33 @@ texture_filter = 0
 material = SubResource("StandardMaterial3D_i3fi7")
 size = Vector3(20, 1, 20)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_i3fi7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o8wgc"]
+albedo_texture = ExtResource("4_i3fi7")
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_w20t6"]
+material = SubResource("StandardMaterial3D_o8wgc")
+
 [node name="Node3D" type="Node3D"]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.3, 0, 0, 0, 1, 0, 2, 0)
-script = ExtResource("1_cmk6n")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
+script = SubResource("GDScript_cmk6n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 3.33333, 0, 0, 0, 1, 0, 2, -1)
 shape = SubResource("CapsuleShape3D_qtv3y")
+debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 3.3325, 0.0744762, 0, -0.0223428, 0.99975, 0, 5.33333, 8)
+transform = Transform3D(1, 0, 0, 0, 0.964169, 0.265289, 0, -0.265289, 0.964169, 0, 2.33333, 8)
 fov = 41.6
 
 [node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 3.24, 0, 0, 0, 1, 0, 2, -1)
-texture = ExtResource("1_qtv3y")
+billboard = 2
+texture = ExtResource("2_i3fi7")
 
 [node name="Floor" type="Node3D" parent="."]
 transform = Transform3D(4.16, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -45,7 +88,71 @@ transform = Transform3D(4.16, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 [node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
-shape = SubResource("WorldBoundaryShape3D_i3fi7")
+transform = Transform3D(0.941874, 0, 0, 0, 0.941874, 0, 0, 0, 10.6434, 0.520951, 0, -0.101388)
+shape = SubResource("BoxShape3D_o8wgc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
 mesh = SubResource("BoxMesh_o8wgc")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(44.5781, 0, 0, 0, 0.36, 0, 0, 0, 20.6, 22.6797, 0.477962, -0.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.000654936, -1.43051e-06, 0.00167416)
+shape = SubResource("BoxShape3D_i3fi7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_w20t6")
+
+[node name="House" type="Sprite3D" parent="."]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 4.69079, 7.11004, -9.60989)
+flip_h = true
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_o8wgc")
+
+[node name="House2" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 14.7274, 7.11004, -9.60989)
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_o8wgc")
+
+[node name="House3" type="Sprite3D" parent="."]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 24.05, 7.11004, -9.60989)
+flip_h = true
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_o8wgc")
+
+[node name="House4" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 37.2629, 7.11004, -9.60989)
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_o8wgc")
+
+[node name="House5" type="Sprite3D" parent="."]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 31.1696, 7.11004, -9.28205)
+flip_h = true
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_o8wgc")
+
+[node name="House6" type="Sprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 19.2841, 7.11004, -8.88148)
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_o8wgc")
+
+[node name="House7" type="Sprite3D" parent="."]
+transform = Transform3D(11, 0, 0, 0, 11, 0, 0, 0, 11, 9.20272, 7.11004, -8.88148)
+flip_h = true
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_o8wgc")

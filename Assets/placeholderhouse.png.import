@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cpbetx87nb3xc"
-path.s3tc="res://.godot/imported/repeatingplank.png-40a2cc24b380dea66fab7ac067536bff.s3tc.ctex"
+uid="uid://nd48lscnkfpj"
+path.s3tc="res://.godot/imported/placeholderhouse.png-242108874c215937a349160a2341d8e3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Materials/repeatingplank.png"
-dest_files=["res://.godot/imported/repeatingplank.png-40a2cc24b380dea66fab7ac067536bff.s3tc.ctex"]
+source_file="res://Assets/placeholderhouse.png"
+dest_files=["res://.godot/imported/placeholderhouse.png-242108874c215937a349160a2341d8e3.s3tc.ctex"]
 
 [params]
 

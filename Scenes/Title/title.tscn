@@ -138,7 +138,7 @@ _data = {
 &"new_animation": SubResource("Animation_c7cvr")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fp2oq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7cvr"]
 content_margin_left = 4.0
 content_margin_top = 4.0
 content_margin_right = 4.0
@@ -182,7 +182,7 @@ Button/constants/outline_size = 0
 Button/font_sizes/font_size = 75
 Button/fonts/font = ExtResource("1_c7cvr")
 Button/styles/focus = ExtResource("2_0rqj8")
-Button/styles/hover = SubResource("StyleBoxFlat_fp2oq")
+Button/styles/hover = SubResource("StyleBoxFlat_c7cvr")
 Button/styles/normal = ExtResource("2_0rqj8")
 Button/styles/pressed = ExtResource("2_0rqj8")
 
@@ -211,6 +211,7 @@ autoplay = "new_animation"
 speed_scale = 0.1
 
 [node name="BattleButton" type="BoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 4
@@ -259,6 +260,7 @@ alignment = 0
 script = ExtResource("4_iv8b7")
 
 [node name="ConfidantButton" type="BoxContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 anchors_preset = 4
@@ -283,8 +285,9 @@ script = ExtResource("4_iv8b7")
 layout_mode = 0
 offset_left = 9.0
 offset_top = 3.0
-offset_right = 548.0
+offset_right = 1016.0
 offset_bottom = 43.0
 theme_override_font_sizes/normal_font_size = 30
-text = "Persona Mirror Bound: Test Demo"
+text = "Persona Mirror Bound: Test Demo (Everything is subject to change)
+"
 scroll_active = false

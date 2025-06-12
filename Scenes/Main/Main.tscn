@@ -1,9 +1,44 @@
-[gd_scene load_steps=13 format=3 uid="uid://dhl2ferh0xuqb"]
+[gd_scene load_steps=29 format=3 uid="uid://dhl2ferh0xuqb"]
 
-[ext_resource type="Texture2D" uid="uid://cnq7cnjyyigeh" path="res://Assets/icon.svg" id="2_i3fi7"]
+[ext_resource type="FontFile" uid="uid://bqixcxdonewgu" path="res://Assets/Fonts/DroplineRegular-Wpegz.otf" id="1_7npjy"]
+[ext_resource type="Texture2D" uid="uid://c5lhp3tuan32i" path="res://Assets/Stylebox/placeinfullybody.png" id="1_i3fi7"]
+[ext_resource type="StyleBox" uid="uid://cyi564c23y5ql" path="res://Assets/Stylebox/title.tres" id="2_4vhfm"]
 [ext_resource type="Texture2D" uid="uid://dc0a25kjwmwtv" path="res://Assets/Materials/repeatingbrick.png" id="3_cmk6n"]
+[ext_resource type="FontFile" uid="uid://c8k3adfp1q36u" path="res://Assets/Fonts/UrusanDesa-pg5pZ.otf" id="3_dvlhv"]
 [ext_resource type="Texture2D" uid="uid://cpbetx87nb3xc" path="res://Assets/Materials/repeatingplank.png" id="4_i3fi7"]
 [ext_resource type="Texture2D" uid="uid://nd48lscnkfpj" path="res://Assets/placeholderhouse.png" id="4_o8wgc"]
+[ext_resource type="AudioStream" uid="uid://bqb5xgyqckt70" path="res://Assets/deltarune-explosion.mp3" id="5_7npjy"]
+[ext_resource type="Script" uid="uid://cm6sxyuetq8ik" path="res://Scenes/Main/button.gd" id="5_cv8e0"]
+[ext_resource type="AudioStream" uid="uid://ckxcxs3qec64q" path="res://Assets/heven.mp3" id="10_4vhfm"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i3fi7"]
+sky_top_color = Color(0.207132, 0.400851, 0.900762, 1)
+sky_horizon_color = Color(0.860576, 0.540909, 0.689895, 1)
+sky_curve = 0.121839
+sky_energy_multiplier = 3.99
+ground_bottom_color = Color(0.491829, 0.72565, 0.462409, 1)
+ground_horizon_color = Color(0, 0.294118, 0.0705882, 1)
+ground_curve = 0.437133
+sun_angle_max = 193.2
+sun_curve = 0.0222976
+
+[sub_resource type="Sky" id="Sky_o8wgc"]
+sky_material = SubResource("ProceduralSkyMaterial_i3fi7")
+
+[sub_resource type="Environment" id="Environment_i3fi7"]
+background_mode = 2
+background_color = Color(0, 0.886275, 1, 1)
+sky = SubResource("Sky_o8wgc")
+ssr_enabled = true
+ssao_enabled = true
+ssao_radius = 16.0
+ssao_intensity = 8.07
+ssao_power = 1.4489
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_o8wgc"]
+dof_blur_far_distance = 2040.91
+
+[sub_resource type="Compositor" id="Compositor_w20t6"]
 
 [sub_resource type="GDScript" id="GDScript_cmk6n"]
 script/source = "extends CharacterBody3D
@@ -40,6 +75,68 @@ func _physics_process(delta: float) -> void:
 radius = 1.0
 height = 4.0
 
+[sub_resource type="Gradient" id="Gradient_4vhfm"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 0.0352941, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dvlhv"]
+gradient = SubResource("Gradient_4vhfm")
+fill_from = Vector2(0.0954774, 0.310302)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fp2oq"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 0.988235, 1, 1)
+draw_center = false
+border_width_left = 20
+border_width_top = 6
+border_width_right = 20
+border_width_bottom = 6
+corner_radius_top_left = 5
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 5
+corner_detail = 10
+expand_margin_left = 20.0
+expand_margin_right = 50.0
+shadow_color = Color(1, 1, 1, 1)
+anti_aliasing_size = 0.3
+
+[sub_resource type="Theme" id="Theme_hkvnm"]
+default_font = ExtResource("3_dvlhv")
+default_font_size = 50
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(0, 0, 0, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/align_to_largest_stylebox = 0
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 75
+Button/fonts/font = ExtResource("1_7npjy")
+Button/styles/focus = ExtResource("2_4vhfm")
+Button/styles/hover = SubResource("StyleBoxFlat_fp2oq")
+Button/styles/normal = ExtResource("2_4vhfm")
+Button/styles/pressed = ExtResource("2_4vhfm")
+
+[sub_resource type="GDScript" id="GDScript_4vhfm"]
+script/source = "extends Button
+func _pressed():
+	print(\"click me\")
+	$AudioStreamPlayer3D.play()
+"
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_o8wgc"]
 size = Vector3(22.0862, 1, 1.84143)
 
@@ -66,6 +163,11 @@ material = SubResource("StandardMaterial3D_o8wgc")
 
 [node name="Node3D" type="Node3D"]
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_i3fi7")
+camera_attributes = SubResource("CameraAttributesPractical_o8wgc")
+compositor = SubResource("Compositor_w20t6")
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
 script = SubResource("GDScript_cmk6n")
@@ -78,9 +180,65 @@ debug_color = Color(0, 0.6, 0.701961, 1)
 transform = Transform3D(1, 0, 0, 0, 0.964169, 0.265289, 0, -0.265289, 0.964169, 0, 2.33333, 8)
 fov = 41.6
 
+[node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody3D/Camera3D"]
+follow_viewport_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody3D/Camera3D/CanvasLayer"]
+position = Vector2(149, 35)
+rotation = 2.62323
+scale = Vector2(10.9999, -3.70746)
+texture = SubResource("GradientTexture2D_dvlhv")
+
+[node name="GoBackButton" type="BoxContainer" parent="CharacterBody3D/Camera3D/CanvasLayer"]
+custom_minimum_size = Vector2(200, 100)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 38.0
+offset_top = -296.0
+offset_right = 438.0
+offset_bottom = -196.0
+grow_vertical = 2
+rotation = 0.222241
+scale = Vector2(0.447077, 0.457774)
+
+[node name="Button" type="Button" parent="CharacterBody3D/Camera3D/CanvasLayer/GoBackButton"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_hkvnm")
+text = "Go Back To Menu"
+alignment = 0
+script = ExtResource("5_cv8e0")
+
+[node name="NoiseButton" type="BoxContainer" parent="CharacterBody3D/Camera3D/CanvasLayer"]
+custom_minimum_size = Vector2(200, 100)
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 27.0
+offset_top = -233.0
+offset_right = 565.0
+offset_bottom = -133.0
+grow_vertical = 2
+rotation = 0.222241
+scale = Vector2(0.447077, 0.457774)
+
+[node name="Button" type="Button" parent="CharacterBody3D/Camera3D/CanvasLayer/NoiseButton"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_hkvnm")
+text = "Noise Button"
+alignment = 0
+script = SubResource("GDScript_4vhfm")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="CharacterBody3D/Camera3D/CanvasLayer/NoiseButton/Button"]
+stream = ExtResource("5_7npjy")
+
 [node name="Sprite3D" type="Sprite3D" parent="CharacterBody3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 0, 0, 0)
 billboard = 2
-texture = ExtResource("2_i3fi7")
+texture_filter = 0
+texture = ExtResource("1_i3fi7")
 
 [node name="Floor" type="Node3D" parent="."]
 transform = Transform3D(4.16, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
@@ -156,3 +314,7 @@ billboard = 2
 alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("4_o8wgc")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("10_4vhfm")
+autoplay = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dhl2ferh0xuqb"]
+[gd_scene load_steps=33 format=3 uid="uid://dhl2ferh0xuqb"]
 
 [ext_resource type="FontFile" uid="uid://bqixcxdonewgu" path="res://Assets/Fonts/DroplineRegular-Wpegz.otf" id="1_7npjy"]
 [ext_resource type="Texture2D" uid="uid://c5lhp3tuan32i" path="res://Assets/Stylebox/placeinfullybody.png" id="1_i3fi7"]
@@ -10,6 +10,9 @@
 [ext_resource type="AudioStream" uid="uid://bqb5xgyqckt70" path="res://Assets/deltarune-explosion.mp3" id="5_7npjy"]
 [ext_resource type="Script" uid="uid://cm6sxyuetq8ik" path="res://Scenes/Main/button.gd" id="5_cv8e0"]
 [ext_resource type="AudioStream" uid="uid://ckxcxs3qec64q" path="res://Assets/heven.mp3" id="10_4vhfm"]
+[ext_resource type="Texture2D" uid="uid://cifyqg03iex8q" path="res://Assets/plantpot.png" id="10_dvlhv"]
+[ext_resource type="Texture2D" uid="uid://jsk5ljxywawc" path="res://Assets/fountain/fountain-export1.png" id="12_cv8e0"]
+[ext_resource type="Texture2D" uid="uid://1lohno0d1j56" path="res://Assets/fountain/fountain-export2.png" id="13_hkvnm"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_i3fi7"]
 sky_top_color = Color(0.207132, 0.400851, 0.900762, 1)
@@ -63,7 +66,7 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.z = direction.z * 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
@@ -161,6 +164,20 @@ uv1_world_triplanar = true
 [sub_resource type="BoxMesh" id="BoxMesh_w20t6"]
 material = SubResource("StandardMaterial3D_o8wgc")
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ci8a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_cv8e0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_hkvnm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -169,7 +186,7 @@ camera_attributes = SubResource("CameraAttributesPractical_o8wgc")
 compositor = SubResource("Compositor_w20t6")
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 1.36948)
 script = SubResource("GDScript_cmk6n")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
@@ -177,7 +194,7 @@ shape = SubResource("CapsuleShape3D_qtv3y")
 debug_color = Color(0, 0.6, 0.701961, 1)
 
 [node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 0.964169, 0.265289, 0, -0.265289, 0.964169, 0, 2.33333, 8)
+transform = Transform3D(1, 0, 0, 0, 0.998252, 0.0591071, 0, -0.0591071, 0.998252, 0, 2.06894, 17.4454)
 fov = 41.6
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody3D/Camera3D"]
@@ -270,6 +287,43 @@ alpha_cut = 1
 texture_filter = 0
 texture = ExtResource("4_o8wgc")
 
+[node name="pot" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 30.4723, 1.40599, 9.42593)
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("10_dvlhv")
+
+[node name="pot2" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 35.4092, 1.40599, -6.14741)
+flip_h = true
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("10_dvlhv")
+
+[node name="pot3" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 27.6471, 1.40599, -6.14741)
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("10_dvlhv")
+
+[node name="pot4" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 27.6471, 1.40599, 5.7465)
+flip_h = true
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("10_dvlhv")
+
+[node name="pot5" type="Sprite3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 13.4397, 1.40599, 5.7465)
+billboard = 2
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("10_dvlhv")
+
 [node name="House2" type="Sprite3D" parent="."]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 14.7274, 7.11004, -9.60989)
 billboard = 2
@@ -318,3 +372,17 @@ texture = ExtResource("4_o8wgc")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("10_4vhfm")
 autoplay = true
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -13.3153, 5.40203, 6.48145)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_5ci8a")
+autoplay = "default"
+
+[node name="AnimatedSprite3D2" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 28.3267, 3.82547, 0)
+billboard = 2
+texture_filter = 0
+sprite_frames = SubResource("SpriteFrames_5ci8a")
+autoplay = "default"
